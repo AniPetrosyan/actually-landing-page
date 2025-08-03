@@ -1,7 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, Mail } from "lucide-react";
+import { ArrowRight, Calendar, Mail, Check } from "lucide-react";
+import { useState } from "react";
 
 export const CallToAction = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = () => {
+    if (email.trim()) {
+      setIsSubmitted(true);
+      // Here you could add actual email submission logic
+    }
+  };
   return (
     <section className="py-24 bg-gradient-hero relative overflow-hidden" data-section="cta">
       <div className="container mx-auto px-6 relative z-10">
@@ -20,15 +30,35 @@ export const CallToAction = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 px-4 py-3 rounded-xl border border-slate-300 bg-white/80 text-slate-800 placeholder:text-slate-500 focus:outline-none focus:border-primary focus:bg-white transition-all"
               />
-              <Button variant="hero" size="hero" className="group px-8">
-                Join Waitlist
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <Button 
+                variant="hero" 
+                size="hero" 
+                className="group px-8"
+                onClick={handleSubmit}
+                disabled={isSubmitted}
+              >
+                {isSubmitted ? (
+                  <>
+                    Joined Waitlist
+                    <Check className="ml-2 h-5 w-5" />
+                  </>
+                ) : (
+                  <>
+                    Join Waitlist
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </>
+                )}
               </Button>
             </div>
             <p className="text-slate-500 text-sm mt-3 text-center">
-              We'll notify you when Actually is ready for beta testing
+              {isSubmitted 
+                ? "We'll notify you when Actually is ready for beta testing" 
+                : "We'll notify you when Actually is ready for beta testing"
+              }
             </p>
           </div>
           
