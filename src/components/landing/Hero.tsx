@@ -28,8 +28,8 @@ export const Hero = () => {
             className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Actually's AI agents scour the web and your private data sources to
-            keep you & your docs up to date.
+            Actually's AI agents scour the web and your configured data sources
+            to keep you & your docs up to date.
           </p>
 
           {/* CTA Buttons */}
